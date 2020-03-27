@@ -63,20 +63,27 @@ affine_matrix = [[s.cos, -s.sin, tx],
 ```
 
 
-## proyeksi ##
-```
-Affine transformasi
-[x', y', 1]=[[a, b, c],
-             [d, e, f],
-             [0, 0, 1]] @ [x, y, 1]
+## Proyeksi ##
+Proyeksi adalah transformasi linier pada vektor homogen yang diwakili oleh matriks 3×3 non-singular. matriks non-singular adalah matriksyang bisa diinvers yang mana nilai determinan dari matriks tersebut tidak sama dengan 0. kita bisa menuliskan persamaannya menjadi x' = H x
 
+kita dapat menyatakan matriks proyeksi sebagai berikut:
+```
 projective transformasi
-[x', y', 1]=[[a, b, c],
-             [d, e, f],
-             [g, h, 1]] @ [x, y, 1]
+[x', y', 1]=[[a11, a12, a13],
+             [a21, a22, a23],
+             [a31, a32, v  ]] @ [x, y, 1]
 ```
+Projective transformation itu punya 8 derajat kebebasan dikarenakan v = 1 atau 0. dari web bla  bla bla, projective matriks dapat kita sederhanakan menjadi:
+```
+projective transformasi
+[wx', wy', w]=[[1,   0, 0],
+               [0,   1, 0],
+               [v1, v2, v]] @ [x, y, 1]
+```
+kenapa bisa begitu? di karenakan bagian kiri atas 4 derajat kebebasan dari komponen affine, bagian atas kanan 2 derajat kebebasan dari komponen translasi, dan menyisakan 2 derajat kebebasan yang baru yaitu v1 dan v2. karena baris ketiga juga dipakai dalam matriks projective maka hasil yang didapat tidak langsung berupa koordinat melainkan [wx,wy,w], yang mana titik tersebut bukan berada di dimensi 2 melainkan berada di dimensi 3, disinilah asal kata projeksi.
 
-
+dari matriks diatas dapat kita evaluasi menjadi [wx', wy', w] = [x, y, (v1x + v2y + v)]
+dengan w = v1x + v2y + v maka didapat x' = x/(v1x + v2y + v) dan y' = y/(v1x + v2y + v)
 
 
 
