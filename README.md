@@ -125,10 +125,10 @@ def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
     plt.show()
 ```
 
-![Persegi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/persegi.png)
-![Translasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/translasi_persegi.png)
-![Dilatasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/dilatasi_persegi.png)
-![Rotasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/rotas_persegi.png)
+![Persegi](img2Dtransform/persegi.png)
+![Translasi](img2Dtransform/translasi_persegi.png)
+![Dilatasi](img2Dtransform/dilatasi_persgei.png)
+![Rotasi](img2Dtransform/rotas_persegi.png)
 
 ## Proyeksi ##
 Proyeksi adalah transformasi linier pada vektor homogen yang diwakili oleh matriks 3×3 non-singular. matriks non-singular adalah matriksyang bisa diinvers yang mana nilai determinan dari matriks tersebut tidak sama dengan 0. kita bisa menuliskan persamaannya menjadi x' = H x
