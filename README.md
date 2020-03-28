@@ -127,7 +127,7 @@ def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
 
 ![Persegi](img2Dtransform/persegi.png)
 ![Translasi](img2Dtransform/translasi_persegi.png)
-![Dilatasi](img2Dtransform/dilatasi_persgei.png)
+![Dilatasi](img2Dtransform/dilatasi_persegi.png)
 ![Rotasi](img2Dtransform/rotas_persegi.png)
 
 ## Proyeksi ##
@@ -173,7 +173,7 @@ def projective2D(mat,v1,v2):
     return np.reshape(hasil, (baris, kolom))
 ```
 
-![Proyeksi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/projeksi_persegi.png)
+![Proyeksi](img2Dtransform/projeksi_persegi.png)
 
 
 
