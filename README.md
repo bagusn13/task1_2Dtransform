@@ -62,6 +62,72 @@ affine_matrix = [[s.cos, -s.sin, tx],
 [x', y', 1] = affine_matrix @ [x, y, 1]
 ```
 
+Disini saya mencoba mentransformasikan sebuah persegi dengan ukuran 4x4
+
+```python
+a, b, c, d = (2, 2, 1), (2, -2, 1), (-2, -2, 1), (-2, 2, 1)
+persegi = np.array([a, b, c, d])
+```
+
+```python
+def affine2D (mat, dilatasi = 1., translasi = (0.,0.), rotasi = 0.):
+    
+    tx,ty = translasi
+    s     = dilatasi
+    theta = rotasi
+    
+    affineMat = np.array([[s*np.cos(theta), -s*np.sin(theta), tx],
+                          [s*np.sin(theta), s*np.cos(theta) , ty],
+                          [0              , 0               , 1 ]])
+    
+    baris, kolom = mat.shape
+    
+    hasil = np.array([])
+    
+    for row in mat:
+        output_row = affineMat @ row
+        hasil = np.append(hasil, output_row, axis = 0)
+    
+    return np.reshape(hasil, (baris, kolom))
+```
+
+```python
+def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
+    color_lut = 'rgbc'
+    fig = plt.figure()
+    ax = plt.gca()
+    xs = []
+    ys = []
+    i = 0
+    
+    for row in mat:
+        x, y, w = row
+    
+        xs.append(x)
+        ys.append(y)
+    
+        i = int(i)
+        c = color_lut[i]
+        plt.scatter(x, y, color=c)
+        plt.text(x + 0.15, y, f"{string.ascii_letters[i]}")
+        i += 1
+        
+    xs.append(xs[0])
+    ys.append(ys[0])
+    plt.plot(xs, ys, color="maroon", linestyle='solid')
+    ax.set_xticks(np.arange(-10, 10, 1))
+    ax.set_yticks(np.arange(-4, 10, 1))
+    plt.title(title)
+    plt.grid()
+    plt.savefig(filename)
+    plt.show()
+```
+
+```python
+draw_2D(persegi,'Sebelum Transformasi', 'persegi.png')
+```
+![persegi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/persegi.png)
+
 
 ## Proyeksi ##
 Proyeksi adalah transformasi linier pada vektor homogen yang diwakili oleh matriks 3×3 non-singular. matriks non-singular adalah matriksyang bisa diinvers yang mana nilai determinan dari matriks tersebut tidak sama dengan 0. kita bisa menuliskan persamaannya menjadi x' = H x
@@ -73,7 +139,7 @@ projective transformasi
              [a21, a22, a23],
              [a31, a32, v  ]] @ [x, y, 1]
 ```
-Projective transformation itu punya 8 derajat kebebasan dikarenakan v = 1 atau 0. dari web bla  bla bla, projective matriks dapat kita sederhanakan menjadi:
+Projective transformation itu punya 8 derajat kebebasan dikarenakan v = 1 atau 0. Dalam website ini [Part II: Projective Transformations in 2D](https://mc.ai/part-ii-projective-transformations-in-2d/) dijelaskan bahwa matriks H memiliki empat matriks dalam rantai matriks, projective matriks dapat kita sederhanakan menjadi:
 ```
 projective transformasi
 [wx', wy', w]=[[1,   0, 0],
