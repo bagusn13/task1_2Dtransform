@@ -123,10 +123,7 @@ def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
     plt.show()
 ```
 
-```python
-draw_2D(persegi,'Sebelum Transformasi', 'persegi.png')
-```
-![persegi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/persegi.png)
+![Persegi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/persegi.png)
 
 
 ## Proyeksi ##
@@ -150,6 +147,27 @@ kenapa bisa begitu? di karenakan bagian kiri atas 4 derajat kebebasan dari kompo
 
 dari matriks diatas dapat kita evaluasi menjadi [wx', wy', w] = [x, y, (v1x + v2y + v)]
 dengan w = v1x + v2y + v maka didapat x' = x/(v1x + v2y + v) dan y' = y/(v1x + v2y + v)
+
+```python
+def projective2D(mat,v1,v2):
+    projective_matrix = np.array([[1, 0, 0],
+                                  [0, 1, 0],
+                                  [v1, v2, 1]])
+    
+    # mendapatkan ukuran matriks input
+    baris, kolom = mat.shape
+    
+    hasil = np.array([])
+    for row in mat:
+        # mat_w akan menghasilkan (wx,wy,w)
+        mat_w = projective_matrix @ row
+        # untuk menghasilkan (x,y,1) maka dibagi dengan w, 
+        # dimana w bisa kita dapat pada komponen terakhir dari mat_w
+        output_row = mat_w / mat_w[2]
+        hasil = np.append(hasil, output_row, axis = 0)
+    
+    return np.reshape(hasil, (baris, kolom))
+```
 
 
 
