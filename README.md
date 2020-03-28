@@ -1,9 +1,9 @@
-###### Bagus Nugraha ######
-###### 1313617002 ######
-###### Sistem Pakar Semester 112 ######
-###### Assignment 1 Task 1 2D Transformations ######
+##### Bagus Nugraha #####
+##### 1313617002 #####
+##### Sistem Pakar Semester 112 #####
+##### Assignment 1 Task 1 2D Transformations #####
 
-laporan ini disusun untuk memenuhi *task 1 asssignment1*, diminta untuk beberapa tranfornasi sederhana dalam bidang dua dimensi. saya menulis kode di jupyter notebook dengan python 3.
+laporan ini disusun untuk memenuhi *task 1 asssignment1*, diminta untuk beberapa tranformasi sederhana dalam bidang dua dimensi. saya menulis kode di jupyter notebook dengan python 3.
 
 ## Translasi ##
 Translasi atau pergeseran adalah transformasi yang memindahkan titik dengan jarak dan arah tertentu. translasi dinyatakan oleh T = (tx,ty) dengan tx menyatakn jarak dan arah perpindahan secara horizontal dan ty menyatakan jarak dan arah perpindahan secara vertikal.
@@ -62,7 +62,8 @@ affine_matrix = [[s.cos, -s.sin, tx],
 [x', y', 1] = affine_matrix @ [x, y, 1]
 ```
 
-Disini saya mencoba mentransformasikan sebuah persegi dengan ukuran 4x4
+Disini saya mencoba mentransformasikan sebuah persegi dengan ukuran 4x4.
+Kita tahu bahwa translasi, dilatasi, dan rotasi dimuat dalam matriks affine maka saya membuat fungsi affine2D dengan parameter matriks input, dilatasi dengan default 1, translasi dengan default (0,0) dan rotasi dengan default 0.
 
 ```python
 a, b, c, d = (2, 2, 1), (2, -2, 1), (-2, -2, 1), (-2, 2, 1)
@@ -90,6 +91,7 @@ def affine2D (mat, dilatasi = 1., translasi = (0.,0.), rotasi = 0.):
     
     return np.reshape(hasil, (baris, kolom))
 ```
+Fungsi affine diatas memberikan hasil berupa matriks yang sudah ditransformasikan. Kemudian untuk memvisualisasikan apa yang sudah ditransformasi, dibuatlah sebuah fungsi untuk memploting sebuah matriks yaitu draw_2D.
 
 ```python
 def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
@@ -124,7 +126,9 @@ def draw_2D(mat, title='Transformasi Geometri' , filename='temp.png'):
 ```
 
 ![Persegi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/persegi.png)
-
+![Translasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/translasi_persegi.png)
+![Dilatasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/dilatasi_persegi.png)
+![Rotasi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/rotas_persegi.png)
 
 ## Proyeksi ##
 Proyeksi adalah transformasi linier pada vektor homogen yang diwakili oleh matriks 3×3 non-singular. matriks non-singular adalah matriksyang bisa diinvers yang mana nilai determinan dari matriks tersebut tidak sama dengan 0. kita bisa menuliskan persamaannya menjadi x' = H x
@@ -168,6 +172,8 @@ def projective2D(mat,v1,v2):
     
     return np.reshape(hasil, (baris, kolom))
 ```
+
+![Proyeksi](https://github.com/bagusn13/task1_2Dtransform/tree/master/img2Dtransform/projeksi_persegi.png)
 
 
 
